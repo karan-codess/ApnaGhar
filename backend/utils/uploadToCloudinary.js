@@ -1,5 +1,5 @@
 import cloudinary from "../config/cloudinary.js";
-import streamfier from "streamifier";
+import streamifier from "streamifier";
 
 export const uploadToCloudinary=(buffer,folder ="general")=>{
     return new Promise((resolve,reject)=>{
@@ -12,6 +12,6 @@ export const uploadToCloudinary=(buffer,folder ="general")=>{
                 else reject(error);
             }
         )
-        steamfier.createReadStream(buffer).pipe(stream);
+        streamifier.createReadStream(buffer).pipe(stream);
     })
 }
