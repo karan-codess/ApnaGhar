@@ -1,13 +1,15 @@
-import React from 'react'
-import {landingPageStyles as s} from '../../assets/dummyStyles' 
-import Navbar from '../../components/common/Navbar'
+import React from "react";
+import Navbar from "../../components/common/Navbar";
+import Hero from "../../components/Hero";
 
 const LandingPage = () => {
   return (
-    <div className={s.bgMain}>
+    <div className="min-h-screen bg-gradient-to-br from-blue-100 via-blue-200 to-slate-50">
       <Navbar />
-    </div>
-  )
-}
+      <Hero />
 
-export default LandingPage
+    </div>
+  );
+};
+
+export default LandingPage;
