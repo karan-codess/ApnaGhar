@@ -177,7 +177,7 @@ const Hero = () => {
                 onChange={(e) => setPropertyType(e.target.value)}
                 className="w-full text-black text-lg outline-none bg-transparent"
               >
-                <option value="select Type">Select Type</option>
+                <option value="Select Type">Select Type</option>
                 <option value="house">House/Vila</option>
                 <option value="flat">Flat/Apartment</option>
                 <option value="penthouse">Penthouse</option>

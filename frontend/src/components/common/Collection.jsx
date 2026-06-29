@@ -54,6 +54,14 @@ import PropertyCard from "./PropertyCard";
 // ];
 
 const Collection = () => {
+
+const [properties, setProperties] = useState([]);
+const [loading, setLoading] = useState(true);
+const [error, setError] = useState("");
+
+const [wishlistedIds, setWishlistedIds] = useState([]);
+
+
   return (
     <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6">
