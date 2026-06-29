@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { user, logout } = useAuth();
 
   const toggleMenu = () => {
@@ -29,17 +30,17 @@ export default function Navbar() {
       { name: "Wishlist", path: "/wishlist" },
       { name: "About", path: "/about" },
       { name: "Contact", path: "/contact" },
-      { name: "Profile", path: "/profile" },
+      // { name: "Profile", path: "/profile" },
     );
   }
 
   if (user?.role === "seller") {
     navLinks.push(
       { name: "My Properties", path: "/my-properties" },
-      { name: "Dashboard", path: "/seller-dashboard" },
+      { name: "Dashboard", path: "/dashboard" },
       { name: "About", path: "/about" },
       { name: "Contact", path: "/contact" },
-      { name: "Profile", path: "/profile" },
+      // { name: "Profile", path: "/profile" },
     );
   }
 
@@ -76,22 +77,55 @@ export default function Navbar() {
                 Log In
               </Link>
             ) : (
-              <div className="flex items-center gap-2 bg-white text-black px-4 py-1.5 rounded-lg">
-                <span className="font-semibold text-sm">{user.name}</span>
-                <div className="relative group">
-                  <Star
-                    size={16}
-                    className={
-                      user.role === "seller"
-                        ? "fill-green-500 text-green-500 cursor-pointer"
-                        : "fill-blue-500 text-blue-500 cursor-pointer"
+              <div className="relative">
+                <div
+                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                  className="relative w-10 h-10"
+                >
+                  <img
+                    src={
+                      user.profilePic ||
+                      `https://ui-avatars.com/api/?name=${user.name}&background=0d6e59&color=fff`
                     }
+                    alt="profile"
+                    className="w-10 h-10 rounded-full object-cover border-2 border-white"
                   />
+                  <div className="absolute -top-1 -right-1 bg-white rounded-full p-[2px] shadow group">
+                    <Star
+                      size={12}
+                      className={
+                        user.role === "seller"
+                          ? "fill-green-500 text-green-500"
+                          : "fill-blue-500 text-blue-500"
+                      }
+                    />
 
-                  <div className="absolute left-1/2 -translate-x-1/2 top-6 opacity-0 group-hover:opacity-100 transition bg-black text-white text-xs px-2 py-1 rounded whitespace-nowrap">
-                    {user.role}
+                    <div className="absolute left-1/2 -translate-x-1/2 top-5 opacity-0 group-hover:opacity-100 transition bg-black text-white text-xs px-2 py-1 rounded whitespace-nowrap">
+                      {user.role}
+                    </div>
                   </div>
                 </div>
+                {isDropdownOpen && (
+                  <div className="absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden z-50">
+                    <Link
+                      to="/profile"
+                      onClick={() => setIsDropdownOpen(false)}
+                      className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                    >
+                      Profile
+                    </Link>
+
+                    <button
+                      onClick={() => {
+                        logout();
+                        setIsDropdownOpen(false);
+                      }}
+                      className="w-full text-left px-4 py-2 text-red-500 hover:bg-gray-100"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                )}
               </div>
             )}
             <button className="md:hidden" onClick={toggleMenu}>
@@ -100,38 +134,36 @@ export default function Navbar() {
           </div>
         </div>
         {isOpen && (
-      <div className="md:hidden px-4 mt-8 py-4 pt-4">
-        <ul className="flex flex-col gap-6 text-2xl">
+          <div className="md:hidden px-4 mt-8 py-4 pt-4">
+            <ul className="flex flex-col gap-6 text-2xl">
+              {navLinks.map((link) => (
+                <li key={link.path}>
+                  <Link
+                    to={link.path}
+                    onClick={() => setIsOpen(false)}
+                    className="block"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
 
-          {navLinks.map((link) => (
-            <li key={link.path}>
-              <Link
-                to={link.path}
-                onClick={() => setIsOpen(false)}
-                className="block"
-              >
-                {link.name}
-              </Link>
-            </li>
-          ))}
-
-          {user && (
-            <li>
-              <button
-                onClick={() => {
-                  logout();
-                  setIsOpen(false);
-                }}
-                className="text-red-400"
-              >
-                Logout
-              </button>
-            </li>
-          )}
-
-        </ul>
-      </div>
-    )}
+              {user && (
+                <li>
+                  <button
+                    onClick={() => {
+                      logout();
+                      setIsOpen(false);
+                    }}
+                    className="text-red-400"
+                  >
+                    Logout
+                  </button>
+                </li>
+              )}
+            </ul>
+          </div>
+        )}
       </div>
     </nav>
   );
