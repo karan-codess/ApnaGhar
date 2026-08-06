@@ -61,7 +61,7 @@ const PropertyCard = ({
           <img
             src={property.images[0]}
             alt={property.title}
-            className="w-[100px] h-[100px] object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
+            className="w-full h-56 object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
           />
 
           <div className="absolute top-4 left-4 right-4 flex justify-between items-center z-10">
@@ -94,7 +94,7 @@ const PropertyCard = ({
                 </button>
               )}
 
-          </div>
+        </div>
 
 
 
@@ -104,6 +104,7 @@ const PropertyCard = ({
                 {formattedPrice}
               </h3>
           </div>
+        </div>  
           
           <div className="p-5 flex flex-col flex-1">
             <div className="flex justify-between items-center">
@@ -210,7 +211,6 @@ const PropertyCard = ({
               </div>
             )}
           </div>
-        </div>
       </Link>
       {renderActions && (
         <div

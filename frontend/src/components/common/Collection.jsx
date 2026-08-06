@@ -3,6 +3,8 @@ import PropertyCard from "./PropertyCard";
 import axios from "axios";
 import API_URL from "../../config";
 import { useAuth } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+
 
 const Collection = () => {
   const { user, token } = useAuth();
@@ -10,6 +12,7 @@ const Collection = () => {
   const [properties, setProperties] = useState([]);
   const [error, setError] = useState(null);
   const [wishlistedIds, setWishlistedIds] = useState([]);
+    const navigate = useNavigate();
 
   useEffect(() => {
     fetchProperties();
@@ -73,7 +76,7 @@ const Collection = () => {
   };
 
   return (
-    <div className="bg-blue-500 text-black w-full h-auto py-16 px-4">
+    <div className="text-black w-full h-auto py-16 px-4">
       <div className="flex justify-center">
         <span className="bg-[#DFF8F5] text-[#169A8D] px-5 py-2 rounded-full font-semibold text-sm">
           HANDPICKED FOR YOU
@@ -115,6 +118,11 @@ const Collection = () => {
               ))}
           </div>
         )}
+        <div className="text-center mt-20">
+          <button onClick={()=> navigate("/properties")} className="btn btn-primary py-4 px-12 rounded-3xl">
+            View All Properties
+          </button>
+        </div>
       </div>
     </div>
   );
