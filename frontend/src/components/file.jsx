@@ -1,3 +1,6 @@
+
+
+
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
@@ -61,7 +64,7 @@ const PropertyCard = ({
           <img
             src={property.images[0]}
             alt={property.title}
-            className="w-[100px] h-[100px] object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
+            className="w-[50px] h-[50px] object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
           />
 
           <div className="absolute top-4 left-4 right-4 flex justify-between items-center z-10">
@@ -77,10 +80,9 @@ const PropertyCard = ({
               )}
               <span className="bg-primary text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1 uppercase">
                 <HiShieldCheck size={14} />
-                Verified </span>
-            </div>
-
-            {(!user || user.role === "buyer") && (
+                Verified
+              </span>
+              {(!user || user.role === "buyer") && (
                 <button
                   type="button"
                   onClick={handleWishlistClick}
@@ -93,18 +95,14 @@ const PropertyCard = ({
                   )}
                 </button>
               )}
+            </div>
 
-          </div>
-
-
-
-              
-          <div className="absolute bottom-0 left-0 right-0 pt-6 pb-3 px-4 bg-gradient-to-t from-black/70 to-transparent text-white">
+            <div className="absolute bottom-0 left-0 right-0 pt-6 pb-3 px-4 bg-gradient-to-t from-black/70 to-transparent text-white">
               <h3 className="text-[1.5rem] font-extrabold m-0">
                 {formattedPrice}
               </h3>
+            </div>
           </div>
-          
           <div className="p-5 flex flex-col flex-1">
             <div className="flex justify-between items-center">
               <span className="text-[0.75rem] font-bold text-primary uppercase tracking-[0.05em]">
@@ -132,34 +130,22 @@ const PropertyCard = ({
                     <div className="text-[#64748b] mb-1 flex justify-center">
                       <HiOutlineHome size={20} />
                     </div>
-                    <div className="font-bold text-[0.9375rem] text-text-main">
-                      {property.status}
-                    </div>
-                    <div className="text-[0.625rem] text-[#94a3b8] uppercase font-bold">
-                      Type
-                    </div>
+                    <div className="font-bold text-[0.9375rem] text-text-main">{property.status}</div>
+                    <div className="text-[0.625rem] text-[#94a3b8] uppercase font-bold">Type</div>
                   </div>
                   <div className="text-center border-l border-r border-[#f1f5f9]">
                     <div className="text-[#64748b] mb-1 flex justify-center">
                       <HiArrowsExpand size={20} />
                     </div>
-                    <div className="font-bold text-[0.9375rem] text-text-main">
-                      {property.areaSize}
-                    </div>
-                    <div className="text-[0.625rem] text-[#94a3b8] uppercase font-bold">
-                      Sq Ft
-                    </div>
+                    <div className="font-bold text-[0.9375rem] text-text-main">{property.areaSize}</div>
+                    <div className="text-[0.625rem] text-[#94a3b8] uppercase font-bold">Sq Ft</div>
                   </div>
                   <div className="text-center">
                     <div className="text-[#64748b] mb-1 flex justify-center">
                       <HiShieldCheck size={20} />
                     </div>
-                    <div className="font-bold text-[0.9375rem] text-text-main">
-                      OK
-                    </div>
-                    <div className="text-[0.625rem] text-[#94a3b8] uppercase font-bold">
-                      Legal
-                    </div>
+                    <div className="font-bold text-[0.9375rem] text-text-main">OK</div>
+                    <div className="text-[0.625rem] text-[#94a3b8] uppercase font-bold">Legal</div>
                   </div>
                 </>
               ) : (
@@ -168,12 +154,8 @@ const PropertyCard = ({
                     <div className="text-[#64748b] mb-1 flex justify-center">
                       <HiOutlineHome size={20} />
                     </div>
-                    <div className="font-bold text-[0.9375rem] text-text-main">
-                      {property.bhk}
-                    </div>
-                    <div className="text-[0.625rem] text-[#94a3b8] uppercase font-bold">
-                      Beds
-                    </div>
+                    <div className="font-bold text-[0.9375rem] text-text-main">{property.bhk}</div>
+                    <div className="text-[0.625rem] text-[#94a3b8] uppercase font-bold">Beds</div>
                   </div>
                   <div className="text-center border-l border-r border-[#f1f5f9]">
                     <div className="text-[#64748b] mb-1 flex justify-center">
@@ -183,20 +165,14 @@ const PropertyCard = ({
                       {property.bathrooms ||
                         Math.max(1, parseInt(property.bhk) - 1 || 0)}
                     </div>
-                    <div className="text-[0.625rem] text-[#94a3b8] uppercase font-bold">
-                      Baths
-                    </div>
+                    <div className="text-[0.625rem] text-[#94a3b8] uppercase font-bold">Baths</div>
                   </div>
                   <div className="text-center">
                     <div className="text-[#64748b] mb-1 flex justify-center">
                       <HiArrowsExpand size={20} />
                     </div>
-                    <div className="font-bold text-[0.9375rem] text-text-main">
-                      {property.areaSize}
-                    </div>
-                    <div className="text-[0.625rem] text-[#94a3b8] uppercase font-bold">
-                      Sq Ft
-                    </div>
+                    <div className="font-bold text-[0.9375rem] text-text-main">{property.areaSize}</div>
+                    <div className="text-[0.625rem] text-[#94a3b8] uppercase font-bold">Sq Ft</div>
                   </div>
                 </>
               )}
@@ -204,24 +180,19 @@ const PropertyCard = ({
 
             {renderActions && (
               <div className="mt-5">
-                <button className="btn btn-primary w-full p-3 rounded-xl font-bold text-[0.9375rem]">
-                  View Details
-                </button>
+                <button className="btn btn-primary w-full p-3 rounded-xl font-bold text-[0.9375rem]">View Details</button>
               </div>
             )}
           </div>
         </div>
       </Link>
       {renderActions && (
-        <div
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-          }}
-          onMouseDown={(e) => e.stopPropagation()}
-          className="px-5 pb-5 flex gap-2 relative z-20"
-        >
+        <div onClick={(e)=>{
+          e.preventDefault()
+          e.stopPropagation()
+        }} onMouseDown={(e)=>e.stopPropagation()} className="px-5 pb-5 flex gap-2 relative z-20">
           {renderActions(property)}
+
         </div>
       )}
     </div>
@@ -229,3 +200,5 @@ const PropertyCard = ({
 };
 
 export default PropertyCard;
+
+

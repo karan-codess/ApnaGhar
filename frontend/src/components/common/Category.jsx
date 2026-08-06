@@ -1,36 +1,67 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
 import { Building2, House } from "lucide-react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import API_URL from "../../config";
 
 const categories = [
   {
-    title: "Modern Flats",
+    title: "Flats",
     type: "flat",
-    count: 5,
+    key: "flat",
     icon: <Building2 size={32} />,
   },
   {
-    title: "Luxury Villas",
-    type: "house", // ✅ क्योंकि option value="house" है
-    count: 2,
+    title: "Villas",
+    type: "house", // option value="house" hai isliye
+    key: "villa",
     icon: <House size={32} />,
   },
   {
     title: "Penthouse",
     type: "penthouse",
-    count: 1,
+    key: "penthouse",
     icon: <Building2 size={32} />,
   },
   {
-    title: "Commercial",
-    type: "commercial",
-    count: 1,
+    title: "Apartment",
+    type: "apartment",
+    key: "apartment",
     icon: <Building2 size={32} />,
   },
 ];
 
 const Category = () => {
-     const navigate = useNavigate();
+
+  const navigate = useNavigate();
+  // const [counts, setCounts] = useState(DEFAULT_COUNTS);
+  const [loading, setLoading] = useState(true);
+
+  const [propertyCount, setPropertyCount] = useState({
+    flat: 0,
+    villa: 0,
+    penthouse: 0,
+    apartment: 0,
+  });
+
+  useEffect(() => {
+    fetchCounts();
+  }, []);
+
+
+  const fetchCounts = async () => {
+    try {
+      const res = await axios.get(`${API_URL}/api/property/counts`);
+      if (res.data.success) {
+        setPropertyCount(res.data.counts);
+      }
+    } catch (err) {
+      console.error("failed to fetch property counts:", err);
+    }finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-5">
@@ -49,7 +80,7 @@ const Category = () => {
           {categories.map((item, index) => (
             <div
               key={index}
-              onClick={()=>navigate(`/properties?type=${item.type}`)}
+              onClick={() => navigate(`/properties?type=${item.type}`)}
               className="bg-white border border-gray-200 rounded-[28px] h-[225px] flex flex-col justify-center items-center shadow-sm hover:shadow-lg transition-all duration-300"
             >
               {/* Icon */}
@@ -64,14 +95,16 @@ const Category = () => {
 
               {/* Property Count */}
               <p className="mt-3 text-gray-500 text-lg">
-                {item.count.toLocaleString()} Properties
+                {loading
+                  ? "..."
+                  : `${(propertyCount[item.key] ?? 0).toLocaleString()} Properties`}
               </p>
             </div>
           ))}
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Category
+export default Category;
