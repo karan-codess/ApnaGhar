@@ -121,7 +121,7 @@ export const getDashboardStats=async(req,res)=>{
             status:"sold"
         })
         res.json({
-            sucess:true,
+            success:true,
             stats:{
                 totalUsers,
                 totalProperties,
