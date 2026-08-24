@@ -187,9 +187,107 @@ const AddProperty = () => {
                         </div>
                     </div>
                     <div>
-                        <div className=''>
+                        <div className='${sectionHeader}${sectionHeaderSmallMargin}'>
+                            <div className='sectionBar'></div>
+                            <h3 className='sectionTitle'>Pricing & Location</h3>
 
                         </div>
+                        <div className='contentGroupSmall'>
+                            <div>
+                                <label className='labelSmallMargin'>Price ()</label>
+                                <input type="number" value={formData.price} placeholder='e.g. 500000' className='input' required name='price' />
+                            </div>
+                            <div className='gridTwoCol'>
+                                <div>
+                                    <label className='lebelSmallMargin'>City</label>
+                                    <input type="text" name='city' value={formData.city}  onChange={handleInputChange} placeholder='e.g. Mumbai' className='input' required/>
+                                </div>
+                                <div>
+                                    <label className='lebelSmallMargin'>Pincode</label>
+                                    <input type="text" name='pincode' value={formData.pincode}  onChange={handleInputChange} placeholder='e.g. 400001' className='input' required/>
+                                </div>
+                                <div>
+                                    <label className='lebelSmallMargin'>Specific Area</label>
+                                    <input type="text" name='area' value={formData.area}  onChange={handleInputChange} placeholder='e.g. worli' className='input' required/>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div className='section'>
+                        <div className='${sectionHeader}${sectionHeaderSmallMargin}'>
+                            <div className='sectionBar'></div>
+                            <h3 className='sectionTitle'>Amenities</h3>
+                        </div>
+                        <div className='amenitiesGrid'>
+                            {commonAmenities.map((amenity)=>(
+                                <label key={amenity} className='${amenityLabelBase} ${formData.amenities.includes(amenity)?amenityLabelActive:amenityLabelInactive}'>
+                                    <input type="checkbox" className='amenityCheckbox' checked={formData.amenities.includes(amenity)} onChange={()=>handleInputChange(amenity)} />
+                                    <span className='${amenityTextBase} ${formData.amenities.includes(amenity)?amenityTextActive:amenityTextInactive}'>
+                                        {amenity}
+
+                                    </span>
+                                </label>
+                            ))}
+
+                        </div>
+
+                    </div>
+                    <div className='section'>
+                        <div className='${sectionHeader}${sectionSmallSmallMargin}'>
+                            <div className='sectionBar'></div>
+                            <h3 className='sectionTitle'>Propert Images</h3>
+                        </div>
+                        <div className='uploadArea'>
+                            <input type="file" multiple onChange={handleInputChange} className='absolute inset-0 opacity-0 cursor-pointer' accept="image/*"/>
+                            <div className='uploadIconWrapper'>
+                                <HiUpload size={40} color="#64748b" />
+
+                            </div>
+                            <h4 className="uploadTitle">
+                                upload upto 10 high quality images.. (PNG,JPG)
+                            </h4>
+
+                        </div>
+                        {imagePreviews.length>0 &&(
+                            <div className='previewsGrid'>
+                                {imagePreviews.map((src,i)=>(
+                                    <div key={i} className='previewItem' >
+                                        <img src={src} alt="preview" className='w-full h-full object-cover' />
+                                        <button type='button' onClick={()=>removeImage(i)}
+                                            className='removeButton' style={{transform:"rotate(45deg)"}}>
+                                                <HiUpload size={12}/>
+                                        </button>
+
+                                    </div>
+                                ))}
+
+                                {images.length<10 &&(
+                                    <div className='addMoreBox'>
+                                        <input type="file" multiple onChange={handleInputChange} className='absolute inset-0 opacity-0 cursor-pointer accept="images/*' />
+                                        <HiUpload size={20} color="#64748b"/>
+                                        <span className='addMoreText'>Add More</span>
+
+                                    </div>
+                                )}
+
+                            </div>
+                        )}
+                        
+
+                    </div>
+
+                    <div className='footerButton'>
+                        <button type='button' onClick={()=>navigate("/dashboard")} className='cancelButton'>
+Cancel
+                        </button>
+                        <button type='submit' className='submitButton' disabled={loading}>
+                            {loading ?"Publishing...":"Publish Listing"}
+
+                        </button>
+
                     </div>
 
                 </div>
