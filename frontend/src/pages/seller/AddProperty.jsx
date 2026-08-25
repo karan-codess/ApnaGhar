@@ -3,6 +3,7 @@ import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { HiUpload, HiX } from "react-icons/hi";
+import API_URL from "../../config";
 
 const AddProperty = () => {
   const navigate = useNavigate();

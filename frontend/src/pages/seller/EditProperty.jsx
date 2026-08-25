@@ -42,6 +42,7 @@ const EditProperty = () => {
     "Garden",
   ];
 
+
   useEffect(() => {
     const fetchProperty = async () => {
       try {
@@ -64,6 +65,7 @@ const EditProperty = () => {
           securityDeposit: p.securityDeposit || "",
           maintenance: p.maintenance || "",
         });
+
         setExistingImages(p.images || []);
         setLoading(false);
       } catch (err) {
