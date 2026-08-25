@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import API_URL from "../../config";
 import axios from "axios";
-import PropertyCard from "../../components/common/PropertyCard"; // path apne project structure ke hisaab se adjust karein
 import { Link } from "react-router-dom";
 import {
   HiOutlineEye,
