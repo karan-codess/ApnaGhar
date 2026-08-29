@@ -4,7 +4,7 @@ import { protect } from '../middlewares/authmiddleware.js';
 
 const wishlistRouter=express.Router();
 
-wishlistRouter.post("/:propertyId",protect,addWishlist);
+wishlistRouter.post("/",protect,addWishlist);
 
 wishlistRouter.get("/",protect,getWishlist);
 wishlistRouter.delete("/:propertyId",protect,removeWishlist);
