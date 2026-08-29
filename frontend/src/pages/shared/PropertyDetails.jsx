@@ -63,8 +63,8 @@ const PropertyDetails = () => {
         setIsInWishlist(false);
       } else {
         await axios.post(
-          `${API_URL}/api/wishlist/${id}`,
-          {},
+          `${API_URL}/api/wishlist`,
+          { propertyId: id },
           {
             headers: { Authorization: `Bearer ${token}` },
           },
@@ -72,6 +72,8 @@ const PropertyDetails = () => {
         setIsInWishlist(true);
       }
     } catch (err) {
+      console.error("WISHLIST ERROR FULL:", err);
+      console.error("WISHLIST ERROR RESPONSE:", err.response?.data);
       alert("failed to update wishlist .");
     }
   };

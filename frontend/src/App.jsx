@@ -28,6 +28,8 @@ import {
 import { FaChevronUp } from "react-icons/fa";
 import { useAuth } from "./context/AuthContext";
 import MyInquiries from "./pages/buyer/MyInquiries";
+import ChatMessages from "./pages/shared/ChatMessages";
+import Wishlist from "./pages/buyer/Wishlist";
 
 const ScrollToTopRouteChange = () => {
   const { pathname } = useLocation();
@@ -94,6 +96,8 @@ const App = () => {
         <Route element={<ProtectedRoute allowedRoles={["buyer", "seller", "admin"]} /> }>
           <Route element={<SellerLayoutWrapper />}>
             <Route path="/inquiries" element={<MyInquiries/>} />
+            <Route path="/chat-messages" element={<ChatMessages/>}/>
+            <Route path="/wishlist" element={<Wishlist/>} />
             <Route path="/profile" element={<Profile />} />
           </Route>
           <Route element={<ProtectedRoute allowedRoles={["seller"]}/>}>
