@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuth } from "../../context/AuthContext";
-import { Navigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 
 const ProtectedRoute = ({ allowedRoles }) => {
   const { user, loading } = useAuth();
@@ -18,7 +18,7 @@ const ProtectedRoute = ({ allowedRoles }) => {
     return <Navigate to="/login" replace />;
   }
 
-  if (user && allowedRole && !allowedRoles.includes(user.role)) {
+  if (user && allowedRoles && !allowedRoles.includes(user.role)) {
     if (user.role === "admin")
       return <Navigate to="/admin-dashboard" replace />;
     if (user.role === "seller") return <Navigate to="/dashboard" replace />;

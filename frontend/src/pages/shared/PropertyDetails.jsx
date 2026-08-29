@@ -219,7 +219,7 @@ const PropertyDetails = () => {
     <div className="flex items-center gap-2 text-gray-500 mb-2">
       <span className="text-[#0f9d92] text-xl">●</span>
       <span>
-        kanpur dehat
+       {property.description}
       </span>
     </div>
 
@@ -238,7 +238,7 @@ const PropertyDetails = () => {
       <div className="bg-[#f7f9fb] border border-gray-100 rounded-2xl h-24 flex flex-col items-center justify-center">
         <span className="text-[#0f9d92] text-lg">⌂</span>
         <p className="font-bold text-gray-800">
-          {property.bedrooms}
+          {property.bhk}
         </p>
         <p className="text-[10px] font-bold tracking-wider text-gray-400">
           BEDROOMS
@@ -271,7 +271,7 @@ const PropertyDetails = () => {
       <div className="bg-[#f7f9fb] border border-gray-100 rounded-2xl h-24 flex flex-col items-center justify-center">
         <span className="text-[#0f9d92] text-lg">⊞</span>
         <p className="font-bold text-gray-800">
-          {property.area} Sqft
+          {property.areaSize} Sqft
         </p>
         <p className="text-[10px] font-bold tracking-wider text-gray-400">
           LIVING AREA
