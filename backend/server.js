@@ -3,7 +3,7 @@ import cors from 'cors';
 import 'dotenv/config';
 import http from 'http';
 import { Server } from 'socket.io';
-import { connect } from 'http2';
+
 import { connectDB } from './config/db.js';
 import authRouter from './routes/authroutes.js';
 import userRouter from './routes/userroutes.js';
